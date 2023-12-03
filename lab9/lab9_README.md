@@ -1,1 +1,1 @@
-The based structure of the code is done with collaboration with Edoardo Vay 316737.
+The based structure of the code is done in collaboration with Edoardo Vay 316737.
