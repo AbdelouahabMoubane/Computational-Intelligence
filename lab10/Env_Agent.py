@@ -59,7 +59,7 @@ def print_state(game_state: tuple, optional=None) -> None:
 
 
 def print_2_states(game_state1: tuple, game_state2: tuple):
-    
+
     string = ""
     for i in range(3):
         row = ""
