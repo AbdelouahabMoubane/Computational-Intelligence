@@ -163,7 +163,11 @@ def symmetry(game_state: tuple):
     return tuple(game_state[i] for i in INDEX_PERMUTATION_SYMMETRY)
 
 
-
+#State evaluation functions
+#The strategy underlying evaluations of the state is to control the border as much as possible,
+#in order to limit the opponent's plays. The evaluation function gave a higher rating 
+#for positions that are the intersection of multiple possible future solutions, 
+#in this case the central position is the more important.
 
 def evaluation0(state: tuple, first_player):
     frontier = (0, 1, 2, 3, 4, 5, 9, 10, 14, 15, 19, 20, 24)
@@ -293,6 +297,7 @@ def evaluation2(state: tuple, first_player):
         elif state[i] == 1:
             sum_1 = sum_1 - 3 
 
+    # you look at the neighboring pieces
     for i in (6, 8, 12, 16, 18):
         if state[i]==0: 
             if state[i-1]==0:
@@ -355,6 +360,10 @@ def evaluation2(state: tuple, first_player):
     else:
         return sum_0+sum_1    
 
+
+
+#Implementations alpha-beta pruning for the evaluations 1 and 2
+    
 def alpha_beta_pruning1(state, depth, player, alpha=-np.inf, beta=np.inf):
     terminal = check_winner(state)
     if terminal == 0:
@@ -438,6 +447,8 @@ def alpha_beta_pruning2(state, depth, player, alpha=-np.inf, beta=np.inf):
 BORDER = (0, 1, 2, 3, 4, 5, 9, 10, 14, 15, 19, 20, 21, 22, 23, 24)
 
 def feasible_moves(state, player: int):
+    "Given a game state, the function returns all the feasible moves"
+
     childs = list()
     set_childs = set()
     
@@ -451,6 +462,9 @@ def feasible_moves(state, player: int):
                     child = tuple(state1)
                     if not child in set_childs:
                         childs.append((child, i, slide))
+                        # set childs are all game states that are no longer taken into account,
+                        # therefore all equivalent states for symmetries and rotations
+                        # I use the dihedral group to find all the equivalent states 
                         set_childs = set_childs.union({
                         child,
                         rotate(child),

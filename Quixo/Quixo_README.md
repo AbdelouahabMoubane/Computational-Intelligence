@@ -10,6 +10,6 @@ To reduce the dimensionality, like in TicTacToe, we have excluded equivalent con
 
 The strategy underlying evaluations of the state is to control the border as much as possible, in order to limit the opponent's plays. The evaluation function gave a higher rating for positions that are the intersection of multiple possible future solutions, in this case the central position is the more important. All this, however also taking into account the adjacent pieces.
 
-The agent perform very well against the random player, I have the following results for the different depths:
+The agent perform very well against the random player (50 games he plays first and 50 second), I have the following results for the different depths:
 -depth = 1, the win percentage is variable between 95% and 100%;
 -depth > 1, the win percentage is 100%, for all the runs I've done.

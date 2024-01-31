@@ -11,7 +11,8 @@ class RandomPlayer(Player):
         move = random.choice([Move.TOP, Move.BOTTOM, Move.LEFT, Move.RIGHT])
         return from_pos, move
 
-# the players both are very good with depth > 1
+# both players are very good with depth >= 2
+    
 class MyPlayer1(Player):
     def __init__(self, depth) -> None:
         super().__init__()
